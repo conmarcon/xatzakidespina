@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Despoina Chatzaki - Digital Profile</title>
+    <title>Despoina Chatzaki - Profile</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -13,131 +13,125 @@
             --bg-light: #f4f4f4;
         }
 
-        * { box-sizing: border-box; }
+        * { box-sizing: border-box; -webkit-print-color-adjust: exact; print-color-adjust: exact; }
 
         body {
             font-family: 'Segoe UI', Arial, sans-serif;
             margin: 0; padding: 0;
             background: var(--bg-light);
             color: var(--main-dark);
-            -webkit-tap-highlight-color: transparent;
         }
 
         /* --- ΑΡΧΙΚΟ ΜΕΝΟΥ --- */
         #menu-view {
-            height: 100vh;
-            width: 100%;
+            height: 100vh; width: 100%;
             background: linear-gradient(135deg, var(--main-dark) 0%, #444 100%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: white;
-            padding: 20px;
+            display: flex; flex-direction: column;
+            align-items: center; justify-content: center;
+            text-align: center; color: white; position: fixed; z-index: 10;
         }
 
         .menu-card {
-            background: rgba(255, 255, 255, 0.08);
-            padding: 30px;
-            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px; border-radius: 20px;
             backdrop-filter: blur(10px);
             border: 1px solid rgba(212, 175, 55, 0.3);
-            max-width: 400px;
-            width: 100%;
+            max-width: 380px; width: 90%;
         }
 
         .menu-photo {
-            width: 140px; height: 140px;
-            border-radius: 50%;
-            border: 4px solid var(--gold);
-            margin-bottom: 20px;
-            object-fit: cover;
+            width: 130px; height: 130px;
+            border-radius: 50%; border: 4px solid var(--gold);
+            margin-bottom: 15px; object-fit: cover;
         }
 
         .menu-btn {
             display: flex; align-items: center; justify-content: center;
-            width: 100%; padding: 16px; margin: 12px 0;
+            width: 100%; padding: 15px; margin: 12px 0;
             border: none; border-radius: 12px;
             font-size: 15px; font-weight: bold;
-            cursor: pointer; transition: 0.3s;
-            text-transform: uppercase; letter-spacing: 1px;
-            text-decoration: none;
+            cursor: pointer; text-transform: uppercase;
         }
 
         .btn-contact { background: var(--gold); color: var(--main-dark); }
         .btn-cv { background: var(--accent-warm); color: white; }
-        .menu-btn i { margin-right: 12px; font-size: 1.2em; }
+        .menu-btn i { margin-right: 10px; font-size: 1.2em; }
 
         /* --- OVERLAYS --- */
         .overlay {
-            position: fixed;
-            top: 0; left: 0;
+            position: fixed; top: 0; left: 0;
             width: 100%; height: 100%;
-            background: var(--bg-light);
-            z-index: 100;
-            display: none;
-            overflow-y: auto;
-            animation: slideUp 0.4s ease-out;
-        }
-
-        @keyframes slideUp {
-            from { transform: translateY(100%); }
-            to { transform: translateY(0); }
+            background: var(--bg-light); z-index: 100;
+            display: none; overflow-y: auto;
         }
 
         .nav-header {
-            position: sticky; top: 0;
-            background: white;
-            padding: 15px;
-            display: flex; align-items: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            z-index: 110;
+            position: sticky; top: 0; background: white;
+            padding: 10px 15px; display: flex; align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1); z-index: 110;
         }
 
         .back-btn {
-            background: var(--accent-warm);
-            color: white; border: none;
-            padding: 8px 15px; border-radius: 6px;
-            font-weight: bold; cursor: pointer;
-            display: flex; align-items: center;
+            background: var(--accent-warm); color: white; border: none;
+            padding: 8px 18px; border-radius: 5px; font-weight: bold; cursor: pointer;
         }
 
-        /* --- CONTACT CARD --- */
-        .contact-content { padding: 30px 20px; text-align: center; }
-        .contact-card {
-            background: white; padding: 30px 20px;
-            border-radius: 15px; box-shadow: 0 5px 20px rgba(0,0,0,0.05);
-            border-top: 6px solid var(--accent-warm);
+        /* --- CV PAGE (A4 Structure) --- */
+        .cv-container {
+            max-width: 850px; margin: 20px auto;
+            background: white; display: flex;
+            box-shadow: 0 0 30px rgba(0,0,0,0.1);
+            min-height: 297mm;
         }
-        .contact-list { text-align: left; list-style: none; padding: 0; margin: 25px 0; }
-        .contact-list li { 
-            padding: 15px 0; border-bottom: 1px solid #eee; 
-            display: flex; align-items: center; font-size: 1.05em;
-        }
-        .contact-list i { color: var(--accent-warm); width: 35px; font-size: 1.2em; }
 
-        /* --- CV CONTENT --- */
-        .cv-container { background: white; max-width: 900px; margin: 0 auto; display: flex; flex-direction: row; }
-        .left-col { width: 30%; background: var(--main-dark); color: white; padding: 40px 20px; }
-        .right-col { width: 70%; padding: 40px; text-align: left; }
+        .cv-sidebar { width: 30%; background: var(--main-dark); color: white; padding: 30px 20px; }
+        .cv-main { width: 70%; padding: 35px 40px; text-align: left; }
 
         .cv-photo { width: 120px; height: 120px; border-radius: 50%; border: 3px solid var(--gold); margin: 0 auto 20px; display: block; object-fit: cover; }
-        .cv-sidebar-title { color: var(--gold); border-bottom: 1px solid var(--gold); margin: 25px 0 10px; padding-bottom: 5px; font-size: 0.9em; font-weight: bold; }
-        .cv-section-title { background: var(--accent-warm); color: white; padding: 10px 15px; margin: 30px 0 15px; font-weight: bold; text-transform: uppercase; }
+        .cv-sidebar-title { color: var(--gold); border-bottom: 1px solid var(--gold); margin: 20px 0 10px; padding-bottom: 5px; font-size: 0.85em; font-weight: bold; text-transform: uppercase; }
+        .cv-section-title { background: var(--accent-warm); color: white; padding: 8px 15px; margin: 20px 0 12px; font-weight: bold; font-size: 1em; text-transform: uppercase; }
+        
+        .cv-item { margin-bottom: 15px; page-break-inside: avoid; }
+        .cv-item b { color: var(--accent-warm); display: block; font-size: 1.05em; }
+        .cv-item span { font-size: 0.85em; color: #666; font-style: italic; }
+        .cv-item p { margin: 4px 0 0; font-size: 0.95em; line-height: 1.4; }
 
-        @media (max-width: 768px) {
-            .cv-container { flex-direction: column; }
-            .left-col { width: 100%; text-align: center; padding: 30px; }
-            .right-col { width: 100%; padding: 25px; }
+        /* --- ΔΙΟΡΘΩΣΗ ΕΚΤΥΠΩΣΗΣ (PRINT FIX) --- */
+        @media print {
+            @page { size: A4; margin: 0; }
+            .no-print, #menu-view, #contact-overlay, .nav-header { display: none !important; }
+            body { background: white; padding: 0; margin: 0; }
+            
+            #cv-overlay { 
+                display: block !important; 
+                position: absolute; top: 0; left: 0; 
+                width: 100%; height: auto; overflow: visible; 
+            }
+            
+            .cv-container { 
+                display: flex !important; 
+                flex-direction: row !important;
+                width: 100% !important; 
+                margin: 0 !important; 
+                box-shadow: none !important;
+                min-height: 297mm;
+            }
+            
+            .cv-sidebar { 
+                width: 30% !important; 
+                background-color: var(--main-dark) !important; 
+                color: white !important; 
+            }
+            
+            .cv-main { width: 70% !important; padding: 30px !important; }
+            .cv-section-title { background-color: var(--accent-warm) !important; color: white !important; }
         }
 
-        .save-footer { padding: 40px 20px; text-align: center; }
-
-        @media print {
-            .no-print { display: none !important; }
-            .overlay { display: block !important; position: static; height: auto; overflow: visible; }
-            body { background: white; }
+        /* Mobile Adjustments (Screen Only) */
+        @media screen and (max-width: 768px) {
+            .cv-container { flex-direction: column; width: 95%; margin: 10px auto; }
+            .cv-sidebar { width: 100%; text-align: center; }
+            .cv-main { width: 100%; padding: 25px; }
         }
     </style>
 </head>
@@ -145,92 +139,80 @@
 
     <section id="menu-view">
         <div class="menu-card">
-            <img id="main-photo" src="profil.jpg" alt="Δέσποινα Χατζάκη" class="menu-photo" onerror="this.src='https://via.placeholder.com/150'">
-            <h1 style="margin: 0; font-size: 1.6em;">ΔΕΣΠΟΙΝΑ ΧΑΤΖΑΚΗ</h1>
-            <p style="color: var(--gold); font-weight: bold; margin: 8px 0 25px;">ΤΕ Ζωικής Παραγωγής | Διοικητικό Στέλεχος</p>
+            <img id="ref-photo" src="profil.jpg" alt="Δέσποινα Χατζάκη" class="menu-photo" onerror="this.src='https://via.placeholder.com/130'">
+            <h2 style="margin: 0; font-size: 1.6em; letter-spacing: 1px;">ΔΕΣΠΟΙΝΑ ΧΑΤΖΑΚΗ</h2>
+            <p style="color: var(--gold); font-weight: bold; margin: 5px 0 25px;">ΤΕ Ζωικής Παραγωγής | Διοικητικό Στέλεχος</p>
             
-            <button class="menu-btn btn-contact" onclick="openOverlay('contact-overlay')">
-                <i class="fas fa-id-card"></i> ΣΤΟΙΧΕΙΑ ΕΠΑΦΗΣ
+            <button class="menu-btn btn-contact" onclick="toggleView('contact-overlay', true)">
+                <i class="fas fa-address-book"></i> Στοιχεία Επαφής
             </button>
-            <button class="menu-btn btn-cv" onclick="openOverlay('cv-overlay')">
-                <i class="fas fa-file-pdf"></i> ΒΙΟΓΡΑΦΙΚΟ ΣΗΜΕΙΩΜΑ
+            <button class="menu-btn btn-cv" onclick="toggleView('cv-overlay', true)">
+                <i class="fas fa-file-pdf"></i> Βιογραφικό Σημείωμα
             </button>
         </div>
     </section>
 
     <div id="contact-overlay" class="overlay">
-        <div class="nav-header">
-            <button class="back-btn" onclick="closeOverlay('contact-overlay')"><i class="fas fa-chevron-left"></i> ΠΙΣΩ</button>
+        <div class="nav-header no-print">
+            <button class="back-btn" onclick="toggleView('contact-overlay', false)"><i class="fas fa-arrow-left"></i> ΠΙΣΩ</button>
         </div>
-        <div class="contact-content">
-            <div class="contact-card">
-                <img src="profil.jpg" style="width:100px; height:100px; border-radius:50%; border:3px solid var(--gold); object-fit:cover;" onerror="this.src='https://via.placeholder.com/100'">
-                <h2 style="color: var(--accent-warm); margin: 15px 0 5px;">Δέσποινα Χατζάκη</h2>
-                <p style="font-weight: bold; color: #666; margin-bottom: 25px;">ΤΕ Ζωικής Παραγωγής</p>
+        <div style="padding: 40px 20px; text-align: center;">
+            <div style="background: white; padding: 35px; border-radius: 20px; max-width: 400px; margin: 0 auto; box-shadow: 0 10px 25px rgba(0,0,0,0.1); border-top: 8px solid var(--accent-warm);">
+                <img src="profil.jpg" style="width:110px; height:110px; border-radius:50%; border:3px solid var(--gold); object-fit: cover;" onerror="this.src='https://via.placeholder.com/110'">
+                <h3 style="margin: 15px 0 5px;">Δέσποινα Χατζάκη</h3>
+                <p style="color: #666; font-weight: bold; margin-bottom: 25px;">ΤΕ Ζωικής Παραγωγής</p>
                 
-                <ul class="contact-list">
-                    <li><i class="fas fa-mobile-alt"></i> 6989956910</li>
-                    <li><i class="fas fa-envelope"></i> despchat@gmail.com</li>
-                    <li><i class="fas fa-map-marker-alt"></i> Τζερμιάδων Οροπεδίου Λασιθίου</li>
-                </ul>
+                <div style="text-align: left; margin-bottom: 30px;">
+                    <p style="margin: 12px 0;"><i class="fas fa-mobile-alt" style="color: var(--accent-warm); width: 25px;"></i> 6989956910</p>
+                    <p style="margin: 12px 0;"><i class="fas fa-envelope" style="color: var(--accent-warm); width: 25px;"></i> despchat@gmail.com</p>
+                    <p style="margin: 12px 0;"><i class="fas fa-map-marker-alt" style="color: var(--accent-warm); width: 25px;"></i> Τζερμιάδων Οροπεδίου Λασιθίου</p>
+                </div>
 
-                <button class="menu-btn" onclick="downloadVCard()" style="background:#27ae60; color:white;">
-                    <i class="fas fa-user-plus"></i> ΑΠΟΘΗΚΕΥΣΗ ΣΤΟ ΚΙΝΗΤΟ
+                <button class="menu-btn" onclick="saveVCard()" style="background: #27ae60; color: white; border: none;">
+                    <i class="fas fa-user-plus"></i> ΑΠΟΘΗΚΕΥΣΗ ΕΠΑΦΗΣ
                 </button>
-                <p style="font-size: 0.8em; color: #888; margin-top: 10px;">*Η φωτογραφία απαιτεί σύνδεση στο internet ή hosting για αυτόματη ενσωμάτωση.</p>
             </div>
         </div>
     </div>
 
     <div id="cv-overlay" class="overlay">
         <div class="nav-header no-print">
-            <button class="back-btn" onclick="closeOverlay('cv-overlay')"><i class="fas fa-chevron-left"></i> ΠΙΣΩ</button>
+            <button class="back-btn" onclick="toggleView('cv-overlay', false)"><i class="fas fa-arrow-left"></i> ΠΙΣΩ</button>
         </div>
         
         <div class="cv-container">
-            <div class="left-col">
+            <div class="cv-sidebar">
                 <img src="profil.jpg" alt="Photo" class="cv-photo" onerror="this.src='https://via.placeholder.com/120'">
                 <div class="cv-sidebar-title">ΕΠΙΚΟΙΝΩΝΙΑ</div>
-                <div style="font-size:0.85em; margin-bottom:15px; line-height:1.6;">
-                    📍 Τζερμιάδων Λασιθίου<br>
-                    📞 6989956910<br>
-                    ✉️ despchat@gmail.com
+                <div style="font-size:0.85em; line-height:1.6; margin-bottom:20px;">
+                    📍 Τζερμιάδων Λασιθίου<br>📞 6989956910<br>✉️ despchat@gmail.com
                 </div>
-                
                 <div class="cv-sidebar-title">ΔΕΞΙΟΤΗΤΕΣ</div>
-                <div style="font-size:0.85em; line-height:1.8;">
-                    ✦ Ηγεσία & Συντονισμός<br>
-                    ✦ Οργάνωση Δράσεων<br>
-                    ✦ Μεταδοτικότητα<br>
-                    ✦ Συνεργασία με Φορείς
+                <div style="font-size:0.85em; line-height:1.8; margin-bottom:20px;">
+                    ✦ Ηγεσία & Συντονισμός<br>✦ Οργάνωση Δράσεων<br>✦ Μεταδοτικότητα<br>✦ Συνεργασία με Φορείς
                 </div>
-
                 <div class="cv-sidebar-title">ΠΛΗΡΟΦΟΡΙΚΗ</div>
-                <div style="font-size:0.85em;"><b>ECDL Core:</b> Word, Excel, Internet, PPT, DB</div>
-
+                <div style="font-size:0.85em; margin-bottom:20px;"><b>ECDL Core:</b> Word, Excel, Internet, PPT, DB</div>
                 <div class="cv-sidebar-title">ΓΛΩΣΣΕΣ</div>
                 <div style="font-size:0.85em;"><b>Αγγλικά:</b> Certificate of Competency (Michigan)</div>
             </div>
 
-            <div class="right-col">
-                <h1 style="color:var(--accent-warm); margin:0; font-size:2.2em;">ΔΕΣΠΟΙΝΑ ΧΑΤΖΑΚΗ</h1>
-                <p style="font-weight:bold; margin-bottom:30px;">ΤΕ Ζωικής Παραγωγής | Διοικητικό Στέλεχος</p>
+            <div class="cv-main">
+                <h1 style="color:var(--accent-warm); margin:0; font-size:2.4em; text-transform: uppercase;">ΔΕΣΠΟΙΝΑ ΧΑΤΖΑΚΗ</h1>
+                <p style="font-weight:bold; font-size:1.1em; margin:5px 0 25px;">ΤΕ Ζωικής Παραγωγής | Διοικητικό Στέλεχος</p>
 
-                <div class="cv-section-title">Προϋπηρεσία</div>
-                <div style="margin-bottom:15px;">
-                    <b>Δήμος Οροπεδίου Λασιθίου (2010-2025)</b><br>
-                    <span style="font-size:0.9em;">ΤΕ Ζωικής Παραγωγής. Γεωτεχνικά/διοικητικά καθήκοντα & αγροτικές δράσεις.</span>
-                </div>
-                <div style="margin-bottom:15px;"><b>Υπουργείο Πολιτισμού (2015)</b> | Φύλακας Αρχαιοτήτων</div>
-                <div style="margin-bottom:15px;"><b>Αγροτική Τράπεζα (2010)</b> | Έκτακτο Προσωπικό</div>
-                <div style="margin-bottom:15px;"><b>Λιανικό Εμπόριο (2005-2006)</b> | Πωλήτρια</div>
+                <div class="cv-section-title">Επαγγελματική Εμπειρία</div>
+                <div class="cv-item"><b>Δήμος Οροπεδίου Λασιθίου</b><span>2010 – 2025 | ΤΕ Ζωικής Παραγωγής</span><p>Διεκπεραίωση γεωτεχνικών και διοικητικών καθηκόντων, συμμετοχή σε αγροτικές και κτηνοτροφικές δράσεις.</p></div>
+                <div class="cv-item"><b>Υπουργείο Πολιτισμού - ΕΦΑ Λασιθίου</b><span>2015 | Φύλακας Αρχαιολογικών Χώρων</span></div>
+                <div class="cv-item"><b>Αγροτική Τράπεζα της Ελλάδος</b><span>2010 | Έκτακτο Προσωπικό</span></div>
+                <div class="cv-item"><b>Λιανικό Εμπόριο</b><span>2005 – 2006 | Πωλήτρια</span></div>
 
                 <div class="cv-section-title">Δραστηριότητες</div>
-                <div style="margin-bottom:10px;"><b>Σύλλογος Γυναικών «ΡΕΑ» (10 έτη):</b> Πρόεδρος & Αντιπρόεδρος.</div>
-                <div style="margin-bottom:10px;"><b>Αθλητικός Σύλλογος ΑΕΛ ΔΙΑΣ (4 έτη):</b> Γραμματέας.</div>
+                <div class="cv-item"><b>Σύλλογος Γυναικών «ΡΕΑ» (10 έτη)</b><p>Πρόεδρος & Αντιπρόεδρος. Συντονισμός δράσεων, οργάνωση εκδηλώσεων και ενίσχυση κοινωνικής συνοχής.</p></div>
+                <div class="cv-item"><b>Αθλητικός Σύλλογος ΑΕΛ ΔΙΑΣ (4 έτη)</b><p>Γραμματέας. Τήρηση πρακτικών, διοικητική υποστήριξη και οργάνωση δραστηριοτήτων.</p></div>
 
                 <div class="cv-section-title">Επιμόρφωση - Πιστοποιήσεις</div>
-                <div style="font-size:0.9em; line-height:1.6;">
+                <div style="font-size:0.9em; line-height:1.7;">
                     • 10/2025: AI Prompt Engineering<br>
                     • 05/2025: Πιστοποίηση Δημοσίων Συμβάσεων<br>
                     • 10/2024: Εισαγωγική Εκπαίδευση (Προσαρμοστικότητα)<br>
@@ -238,68 +220,42 @@
                 </div>
 
                 <div class="cv-section-title">Εκπαίδευση</div>
-                <div style="font-size:0.95em;"><b>Πτυχίο ΤΕ Ζωικής Παραγωγής</b> - ΤΕΙ Λάρισας (2013)</div>
-                <div style="font-size:0.95em;"><b>Απολυτήριο Λυκείου</b> - Ενιαίο Λύκειο Γουβών (2005)</div>
+                <div class="cv-item"><b>Πτυχίο ΤΕ Ζωικής Παραγωγής</b><span>ΤΕΙ Λάρισας (2013)</span></div>
+                <div class="cv-item"><b>Απολυτήριο Λυκείου</b><span>Ενιαίο Λύκειο Γουβών (2005)</span></div>
             </div>
         </div>
 
-        <div class="save-footer no-print">
-            <button class="menu-btn btn-cv" style="width:auto; padding:15px 40px; display:inline-flex;" onclick="window.print()">
-                <i class="fas fa-file-pdf"></i> ΑΠΟΘΗΚΕΥΣΗ ΣΤΟ ΚΙΝΗΤΟ
+        <div style="text-align: center; padding: 40px;" class="no-print">
+            <button class="menu-btn btn-cv" style="width: auto; padding: 15px 40px; display: inline-flex;" onclick="window.print()">
+                <i class="fas fa-file-pdf"></i> ΑΠΟΘΗΚΕΥΣΗ ΣΕ PDF / ΕΚΤΥΠΩΣΗ
             </button>
         </div>
     </div>
 
     <script>
-        function openOverlay(id) {
-            document.getElementById(id).style.display = 'block';
-            document.body.style.overflow = 'hidden';
-        }
-        function closeOverlay(id) {
-            document.getElementById(id).style.display = 'none';
-            document.body.style.overflow = 'auto';
+        function toggleView(id, show) {
+            document.getElementById(id).style.display = show ? 'block' : 'none';
+            document.body.style.overflow = show ? 'hidden' : 'auto';
         }
 
-        // Συνάρτηση μετατροπής εικόνας σε Base64 για την vCard
-        function getBase64Image(img) {
-            try {
-                var canvas = document.createElement("canvas");
-                canvas.width = img.naturalWidth;
-                canvas.height = img.naturalHeight;
-                var ctx = canvas.getContext("2d");
-                ctx.drawImage(img, 0, 0);
-                var dataURL = canvas.toDataURL("image/jpeg");
-                return dataURL.replace(/^data:image\/(png|jpg|jpeg);base64,/, "");
-            } catch (e) {
-                console.warn("Η φωτογραφία δεν μπόρεσε να κωδοποιηθεί λόγω ασφαλείας browser.");
-                return "";
+        function saveVCard() {
+            let vcard = "BEGIN:VCARD\nVERSION:3.0\nFN:Δέσποινα Χατζάκη\nTITLE:ΤΕ Ζωικής Παραγωγής\nTEL;TYPE=CELL:6989956910\nEMAIL:despchat@gmail.com\nADR;TYPE=HOME:;;Τζερμιάδων Οροπεδίου Λασιθίου;;;\n";
+            const img = document.getElementById('ref-photo');
+            if (img && img.complete && img.naturalWidth !== 0) {
+                try {
+                    const canvas = document.createElement('canvas');
+                    canvas.width = img.naturalWidth; canvas.height = img.naturalHeight;
+                    const ctx = canvas.getContext('2d');
+                    ctx.drawImage(img, 0, 0);
+                    const base64 = canvas.toDataURL('image/jpeg').replace(/^data:image\/jpeg;base64,/, "");
+                    vcard += "PHOTO;ENCODING=b;TYPE=JPEG:" + base64 + "\n";
+                } catch(e) { console.log("Photo bypassed."); }
             }
-        }
-
-        function downloadVCard() {
-            const imgElement = document.getElementById('main-photo');
-            const photoBase64 = getBase64Image(imgElement);
-            
-            let photoSection = "";
-            if (photoBase64) {
-                photoSection = `PHOTO;ENCODING=b;TYPE=JPEG:${photoBase64}\r\n`;
-            }
-
-            const vCardData = `BEGIN:VCARD\r\n` +
-                              `VERSION:3.0\r\n` +
-                              `FN:Δέσποινα Χατζάκη\r\n` +
-                              `TITLE:ΤΕ Ζωικής Παραγωγής | Διοικητικό Στέλεχος\r\n` +
-                              photoSection +
-                              `TEL;TYPE=CELL:6989956910\r\n` +
-                              `EMAIL:despchat@gmail.com\r\n` +
-                              `ADR;TYPE=HOME:;;Τζερμιάδων Οροπεδίου Λασιθίου;;;\r\n` +
-                              `END:VCARD`;
-
-            const blob = new Blob([vCardData], { type: 'text/vcard' });
+            vcard += "END:VCARD";
+            const blob = new Blob([vcard], { type: 'text/vcard' });
             const url = window.URL.createObjectURL(blob);
             const a = document.createElement('a');
-            a.href = url;
-            a.download = 'Despoina_Chatzaki.vcf';
+            a.href = url; a.download = 'Despoina_Chatzaki.vcf';
             a.click();
         }
     </script>
